@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 describe('Dummy test suite', () => {
     it("Dummy test 1 - to be passed", () => {
       expect(1).toBe(1);
