@@ -7,4 +7,7 @@ describe('Dummy test suite', () => {
         expect(2).toBe(2);
     });
 
+    it("Dummy test 3 - to be failed", () => {
+      expect(3).toBe(4);
+    });
   })
