@@ -31,6 +31,6 @@ jobs:
 
       - run: npm test
 
-      - run: sleep 11m
+      - run: sleep 5m
 
       - run: echo All Jobs passed!
