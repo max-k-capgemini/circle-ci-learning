@@ -127,3 +127,15 @@ workflows:
             - test-frontend-simulation
             - test-backend-simulation
             - test-integration-simulation
+          filters:
+            # Filtering by branch:
+            branch:
+              only:
+                - maste
+              # Ignoring job for specific branch:
+              # ignore:
+                # - ignored_branch_name
+            # Filtering by tag regex (used OR logic with filtering by branch):
+            tags:
+              only:
+                - /tag_prefix.*/
