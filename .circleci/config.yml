@@ -131,7 +131,7 @@ workflows:
             # Filtering by branch name string or regex:
             branches:
               only:
-                - master
+                - main
               # Ignoring job for specific branch:
               # ignore:
                 # - ignored_branch_name
