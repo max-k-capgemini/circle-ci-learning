@@ -19,6 +19,14 @@ jobs:
 
       - run: echo Build frontend simulation
 
+      - run: mkdir build_output
+      - run: touch build_output/compiled_output.txt
+
+      - persist_to_workspace:
+          root: build_output
+          - paths:
+              - '*'
+
       - run: echo All steps of 'build-frontend-simulation' job passed!
 
   build-backend-simulation:
@@ -42,6 +50,10 @@ jobs:
 
     steps:
       - checkout
+
+      - attach_workspace:
+          at: ~/repo/workspace
+      - run: ls ~/repo/workspace/compiled_output.txt
 
       - restore_cache:
           keys:
@@ -89,6 +101,10 @@ jobs:
 
     steps:
       - run: echo All steps of 'deploy' job passed!
+
+      - attach_workspace:
+          at: ~/repo/workspace
+      - run: ls ~/repo/workspace/compiled_output.txt
 
 workflows:
   version: 2
