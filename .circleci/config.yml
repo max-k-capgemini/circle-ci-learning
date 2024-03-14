@@ -128,14 +128,14 @@ workflows:
             - test-backend-simulation
             - test-integration-simulation
           filters:
-            # Filtering by branch:
+            # Filtering by branch name string or regex:
             branches:
               only:
-                - maste
+                - master
               # Ignoring job for specific branch:
               # ignore:
                 # - ignored_branch_name
-            # Filtering by tag regex (used OR logic with filtering by branch):
+            # Filtering by tag string or regex (used OR logic with filtering by branch):
             tags:
               only:
                 - /tag_prefix.*/
