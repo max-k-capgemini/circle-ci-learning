@@ -31,8 +31,6 @@ jobs:
 
       - run: npm test
 
-      - run: exit 1
-
       - run: echo All steps of 'build' job passed!
 
   test:
