@@ -8,10 +8,36 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  build:
+  build-frontend-simulation:
     docker:
       - image: cimg/node:21.6.2-browsers
 
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: echo Build frontend simulation
+
+      - run: echo All steps of 'build-frontend-simulation' job passed!
+
+  build-backend-simulation:
+    docker:
+      - image: cimg/node:21.6.2-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: echo Build backend simulation
+
+      - run: echo All steps of 'build-backend-simulation' job passed!
+
+  test-frontend-simulation:
+    docker:
+      - image: cimg/node:21.6.2-browsers
+    
     working_directory: ~/repo
 
     steps:
@@ -31,16 +57,29 @@ jobs:
 
       - run: npm test
 
-      - run: echo All steps of 'build' job passed!
+      - run: echo All steps of 'test-frontend-simulation' job passed!
 
-  test:
+  test-backend-simulation:
     docker:
       - image: cimg/node:21.6.2-browsers
     
     working_directory: ~/repo
 
     steps:
-      - run: echo All steps of 'test' job passed!
+      - run: echo Test backend simulation
+
+      - run: echo All steps of 'test-backend-simulation' job passed!
+
+  test-integration-simulation:
+    docker:
+      - image: cimg/node:21.6.2-browsers
+    
+    working_directory: ~/repo
+
+    steps:
+      - run: echo Test integration simulation
+
+      - run: echo All steps of 'test-integration-simulation' job passed!
   
   deploy:
     docker:
@@ -55,10 +94,20 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
-      - test:
+      - build-frontend-simulation
+      - build-backend-simulation
+      - test-frontend-simulation:
           requires:
-            - build
+           - build-frontend-simulation
+      - test-backend-simulation:
+          requires:
+            - build-backend-simulation
+      - test-integration-simulation:
+         requires:
+          - build-frontend-simulation
+          - build-backend-simulation
       - deploy:
           requires:
-            - test
+            - test-frontend-simulation
+            - test-backend-simulation
+            - test-integration-simulation
