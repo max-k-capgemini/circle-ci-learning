@@ -129,7 +129,7 @@ workflows:
             - test-integration-simulation
           filters:
             # Filtering by branch:
-            branch:
+            branches:
               only:
                 - maste
               # Ignoring job for specific branch:
