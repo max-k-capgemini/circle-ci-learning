@@ -41,6 +41,15 @@ jobs:
 
     steps:
       - run: echo All steps of 'test' job passed!
+  
+  deploy:
+    docker:
+      - image: cimg/node:21.6.2-browsers
+    
+    working_directory: ~/repo
+
+    steps:
+      - run: echo All steps of 'deploy' job passed!
 
 workflows:
   version: 2
@@ -50,3 +59,6 @@ workflows:
       - test:
           requires:
             - build
+      - deploy
+          requires:
+            - test
