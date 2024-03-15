@@ -27,6 +27,10 @@ jobs:
           paths:
               - '*'
 
+      - run: echo Value of 'TEST_ENV_VARIABLE' variable is $TEST_ENV_VARIABLE
+      
+      - run: echo Value of 'CONTEXT_VAR_1' variable is $CONTEXT_VAR_1
+
       - run: echo All steps of 'build-frontend-simulation' job passed!
 
   build-backend-simulation:
@@ -110,7 +114,10 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build-frontend-simulation
+      - build-frontend-simulation:
+          context:
+            - Test context 1
+      
       - build-backend-simulation
       - test-frontend-simulation:
           requires:
