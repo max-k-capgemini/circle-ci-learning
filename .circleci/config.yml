@@ -32,7 +32,7 @@ jobs:
       - run: echo Value of 'CONTEXT_VAR_1' variable is $CONTEXT_VAR_1
 
       - run:
-          extracted_context_var = $CONTEXT_VAR_1
+          extracted_context_var=$CONTEXT_VAR_1
           echo $extracted_context_var
 
       - run: echo All steps of 'build-frontend-simulation' job passed!
