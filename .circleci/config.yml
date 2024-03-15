@@ -31,7 +31,7 @@ jobs:
       
       - run: echo Value of 'CONTEXT_VAR_1' variable is $CONTEXT_VAR_1
 
-      - run:
+      - run: |
           extracted_context_var=$CONTEXT_VAR_1
           echo $extracted_context_var
 
